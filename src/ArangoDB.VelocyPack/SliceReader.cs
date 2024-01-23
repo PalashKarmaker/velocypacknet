@@ -1,11 +1,5 @@
-﻿using ArangoDB.VelocyPack.Enumerators;
-using ArangoDB.VelocyPack.Exceptions;
+﻿using ArangoDB.VelocyPack.Exceptions;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArangoDB.VelocyPack
 {

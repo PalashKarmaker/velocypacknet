@@ -1,10 +1,5 @@
 ﻿using ArangoDB.VelocyPack.Exceptions;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArangoDB.VelocyPack.Enumerators
 {
@@ -41,7 +36,7 @@ namespace ArangoDB.VelocyPack.Enumerators
                 return _current;
             }
         }
-        
+
         public bool MoveNext()
         {
             if (position < size)
@@ -59,7 +54,7 @@ namespace ArangoDB.VelocyPack.Enumerators
         {
             throw new NotImplementedException();
         }
-        
+
         public void Dispose()
         {
         }

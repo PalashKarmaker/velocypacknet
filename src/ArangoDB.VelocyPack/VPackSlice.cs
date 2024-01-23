@@ -1,12 +1,7 @@
 ﻿using ArangoDB.VelocyPack.Enumerators;
 using ArangoDB.VelocyPack.Exceptions;
 using ArangoDB.VelocyPack.Utils;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArangoDB.VelocyPack
 {
@@ -97,7 +92,7 @@ namespace ArangoDB.VelocyPack
             DateTimeOffset date = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero).AddMilliseconds(totalMilliseconds);
             return date.ToOffset(offset.Value);
         }
-        
+
         double ToDoubleUnchecked()
         {
             return BitConverter.Int64BitsToDouble((long)BitConverter.ToUInt64(vpack, start + 1));
@@ -216,11 +211,11 @@ namespace ArangoDB.VelocyPack
 
         public DateTime? ToDateTime(DateTimeKind? kind = null, DateTimeStyles? style = null)
         {
-            if(IsType(SliceType.Null))
+            if (IsType(SliceType.Null))
             {
                 return null;
             }
-            if(IsType(SliceType.UtcDate))
+            if (IsType(SliceType.UtcDate))
             {
                 return ToDateTimeUnchecked(kind);
             }
@@ -230,7 +225,7 @@ namespace ArangoDB.VelocyPack
 
                 if (style.HasValue == false)
                     style = DateTimeStyles.RoundtripKind;
-                
+
                 return DateTime.Parse(time, CultureInfo.InvariantCulture, style.Value);
             }
             else
@@ -272,7 +267,7 @@ namespace ArangoDB.VelocyPack
         {
             if (IsType(SliceType.Null))
                 return null;
-            
+
             return Convert.ToBoolean(Value(), CultureInfo.InvariantCulture);
         }
 
@@ -393,7 +388,7 @@ namespace ArangoDB.VelocyPack
         }
 
         #endregion
-        
+
         #region string helpers
 
         string ToShortString()
@@ -410,7 +405,7 @@ namespace ArangoDB.VelocyPack
         {
             return TypeCode == 0xbf;
         }
-        
+
         int GetLongStringLength()
         {
             return (int)NumberUtil.ToLong(vpack, start + 1, 8);
@@ -776,7 +771,7 @@ namespace ArangoDB.VelocyPack
             long l = 0;
             long r = n - 1;
 
-            for (;;)
+            for (; ; )
             {
                 // midpoint
                 long index = l + ((r - l) / 2);

@@ -1,10 +1,5 @@
 ﻿using ArangoDB.VelocyPack.Exceptions;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArangoDB.VelocyPack.Enumerators
 {
@@ -85,9 +80,12 @@ namespace ArangoDB.VelocyPack.Enumerators
             {
                 key = currentField.MakeKey().ToStringUnchecked();
             }
-            catch (VPackKeyTypeException) {
+            catch (VPackKeyTypeException)
+            {
                 return false;
-            } catch (VPackNeedAttributeTranslatorException) {
+            }
+            catch (VPackNeedAttributeTranslatorException)
+            {
                 return false;
             }
 
