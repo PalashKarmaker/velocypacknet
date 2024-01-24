@@ -4,28 +4,19 @@ using System.Text;
 
 namespace ArangoDB.VelocyPack
 {
-    public class VPackBuilder
+    public class VPackBuilder(IBuilderOptions options)
     {
-        byte[] buffer;
+        byte[] buffer = new byte[10];
 
-        List<int> stack;
-        Dictionary<int, List<int>> index;
-        int size;
+        List<int> stack = [];
+        Dictionary<int, List<int>> index = [];
+        int size = 0;
         bool keyWritten;
-        IBuilderOptions options;
+        IBuilderOptions options = options;
 
         public VPackBuilder()
             : this(new DefaultVPackBuilderOptions())
         {
-        }
-
-        public VPackBuilder(IBuilderOptions options)
-        {
-            this.options = options;
-            size = 0;
-            buffer = new byte[10];
-            stack = new List<int>();
-            index = new Dictionary<int, List<int>>();
         }
 
         public IBuilderOptions GetOptions()
@@ -49,20 +40,12 @@ namespace ArangoDB.VelocyPack
             }
         }
 
-        void Write(byte b)
-        {
-            Write(b, size + 1);
-        }
+        void Write(byte b) => Write(b, size + 1);
 
         void Write(byte b, int minCapacity)
         {
             EnsureCapacity(minCapacity);
             buffer[size++] = b;
-        }
-
-        void Write(byte[] bytes)
-        {
-            Write(bytes, size + bytes.Length);
         }
 
         void Write(byte[] bytes, int minCapacity)
@@ -74,10 +57,7 @@ namespace ArangoDB.VelocyPack
             size += bytes.Length;
         }
 
-        void WriteUnchecked(byte b)
-        {
-            buffer[size++] = b;
-        }
+        void WriteUnchecked(byte b) => buffer[size++] = b;
 
         #region add
 
@@ -628,10 +608,7 @@ namespace ArangoDB.VelocyPack
             return buffer[_in];
         }
 
-        bool IsClosed()
-        {
-            return stack.Count == 0;
-        }
+        bool IsClosed() => stack.Count == 0;
 
         VPackBuilder WrapAdd(object value, Action append)
         {
@@ -644,21 +621,15 @@ namespace ArangoDB.VelocyPack
             try
             {
                 if (value == null)
-                {
                     AppendNull();
-                }
                 else
-                {
                     append();
-                }
             }
             catch (VPackBuilderException e)
             {
                 // clean up in case of an exception
                 if (haveReported)
-                {
                     CleanupAdd();
-                }
                 throw e;
             }
             return this;

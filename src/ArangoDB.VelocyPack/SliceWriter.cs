@@ -12,18 +12,12 @@ namespace ArangoDB.VelocyPack
             return builder.Buffer;
         }
 
-        public SliceWriter()
-        {
-            builder = new VPackBuilder();
-        }
+        public SliceWriter() => builder = new VPackBuilder();
 
         /// <summary>
         /// Closes this stream and the underlying stream.
         /// </summary>
-        public override void Close()
-        {
-            base.Close();
-        }
+        public override void Close() => base.Close();
 
         /// <summary>
         /// Writes the beginning of a JSON object.
@@ -32,9 +26,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteStartObject();
             if (attributeName == null)
-            {
                 builder.Add(SliceType.Object);
-            }
             else
             {
                 builder.Add(attributeName, SliceType.Object);
@@ -58,9 +50,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteStartArray();
             if (attributeName == null)
-            {
                 builder.Add(SliceType.Array);
-            }
             else
             {
                 builder.Add(attributeName, SliceType.Array);
@@ -84,7 +74,6 @@ namespace ArangoDB.VelocyPack
         public override void WritePropertyName(string name)
         {
             base.WritePropertyName(name);
-
             attributeName = name;
         }
 
@@ -93,18 +82,12 @@ namespace ArangoDB.VelocyPack
         /// </summary>
         /// <param name="name">The name of the property.</param>
         /// <param name="escape">A flag to indicate whether the text should be escaped when it is written as a JSON property name.</param>
-        public override void WritePropertyName(string name, bool escape)
-        {
-            WritePropertyName(name);
-        }
+        public override void WritePropertyName(string name, bool escape) => WritePropertyName(name);
 
         /// <summary>
         /// Writes the end of the current JSON object or array.
         /// </summary>
-        public override void WriteEnd()
-        {
-            base.WriteEnd();
-        }
+        public override void WriteEnd() => base.WriteEnd();
 
         /// <summary>
         /// Writes a null value.
@@ -113,9 +96,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteNull();
             if (attributeName == null)
-            {
                 builder.Add(SliceType.Null);
-            }
             else
             {
                 builder.Add(attributeName, SliceType.Null);
@@ -130,9 +111,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteUndefined();
             if (attributeName == null)
-            {
                 builder.Add(SliceType.None);
-            }
             else
             {
                 builder.Add(attributeName, SliceType.None);
@@ -144,19 +123,13 @@ namespace ArangoDB.VelocyPack
         /// Writes raw JSON without changing the writer's state.
         /// </summary>
         /// <param name="json">The raw JSON to write.</param>
-        public override void WriteRaw(string json)
-        {
-            base.WriteRaw(json);
-        }
+        public override void WriteRaw(string json) => base.WriteRaw(json);
 
         /// <summary>
         /// Writes raw JSON where a value is expected and updates the writer's state.
         /// </summary>
         /// <param name="json">The raw JSON to write.</param>
-        public override void WriteRawValue(string json)
-        {
-            base.WriteRawValue(json);
-        }
+        public override void WriteRawValue(string json) => base.WriteRawValue(json);
 
         /// <summary>
         /// Writes a <see cref="String"/> value.
@@ -166,9 +139,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -184,9 +155,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -203,9 +172,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -221,9 +188,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -240,9 +205,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -258,9 +221,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -276,9 +237,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -294,9 +253,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -312,9 +269,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -331,9 +286,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -349,9 +302,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -367,9 +318,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -386,9 +335,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -414,9 +361,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -432,9 +377,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -450,9 +393,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value.ToByteArray());
-            }
             else
             {
                 builder.Add(attributeName, value.ToByteArray());
@@ -468,9 +409,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -486,9 +425,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -505,9 +442,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
@@ -523,9 +458,7 @@ namespace ArangoDB.VelocyPack
         {
             base.WriteValue(value);
             if (attributeName == null)
-            {
                 builder.Add(value);
-            }
             else
             {
                 builder.Add(attributeName, value);
